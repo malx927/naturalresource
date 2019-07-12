@@ -1,0 +1,43 @@
+{% extends "articles/base.html" %}{% load static %}
+{% block title %}{{ site_name }}-{{ object.title }}{% endblock %}
+{% block content %}
+   		<div class="site">
+			<h3 style="font-size:16px;color:#2371d9;">{{ object.channel_name }}</h3>
+			{% include "articles/include/breadcrumbs.html" %}
+		</div>
+			<!--正文 S-->
+			<div class="content">
+            {% if object %}
+                <h1>{{ object.title }}</h1>
+                {% if object.sub_title %}<h3>{{ object.title }}</h3>{% endif %}
+                <div class="content_source">
+                {% if object.source %}
+					<span class="source">文章来源：{{ object.source }}</span>
+                {% endif %}
+                    <span class="time">添加时间：{{ object.show_time|date:'Y-m-d'}}</span>
+                    <span id="hits">阅读：{{ object.hitcounts }}</span>
+				</div>
+                <div class="content_text">
+{#                    {% if object.title_image %}#}
+{#                        <div class="title_img">#}
+{#                            <img src="{{ object.title_image.url }}">#}
+{#                        </div>#}
+{#                    {% endif %}#}
+                    {{ object.content|safe }}
+                </div>
+                <div class="clear"></div>
+				<div class="nextarticle">
+					<ul>
+						<li>上一篇文章：{% if object.pre_article %}<a href="{{ object.pre_article.get_absolute_url }}">{{ object.pre_article.title}}</a>{% else %} 无 {% endif %}</li>
+						<li>下一篇文章：{% if object.next_article %}<a href="{{ object.next_article.get_absolute_url }}">{{ object.next_article.title}}</a>{% else %} 无 {% endif %}</li>
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div>
+            {% endif %}
+
+{% endblock %}
+{% block footer %}
+    {% include "articles/include/footer.html" %}
+{% endblock footer %}
+

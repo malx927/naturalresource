@@ -1,0 +1,17 @@
+{% load static %}
+{% load articles_tags %}
+    <div class="footer">
+        <div style="width:1000px;margin:0 auto;">
+            <div class="error">
+                <img src="{% static 'articles/images/jiucuo.png' %}" alt="">
+            </div>
+            <div class="error1">
+                <img src="{% static 'articles/images/red.png' %}" alt="">
+            </div>
+            {% web_info as info %}
+            <p>主办单位：{{ info.host_unit|default:'' }}	 承办单位：{{ info.tech_support|default:'' }}</p>
+            <p>地址：{{ info.address|default:'' }}	邮政编码：{{ info.post_code|default:'' }}</p>
+            <p>辽ICP备: {{ info.record_no|default:'' }}   辽公网安备:{{ info.police_no|default:'' }}</p>
+            <p>网站标识码:{{ info.web_code|default:'' }}</p>
+        </div>
+    </div>

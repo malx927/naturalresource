@@ -1,0 +1,35 @@
+<!doctype html>{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords"  content="葫芦岛市自然资源局" />
+    <meta name="description"  content="葫芦岛市自然资源局" />
+	<link rel="stylesheet" href="{% static 'articles/css/index.css' %}">
+	<script src="{% static 'articles/js/jquery.min.js' %}"></script>
+	<script src="{% static 'articles/js/jquery.SuperSlide.2.1.1.js' %}"></script>
+</head>
+<body>
+<div class="top_header">{% block top_header %}{% endblock %}</div>
+<div class="wrap">
+		<!-- 头部 -->
+    {% include "articles/include/header.html" %}
+		<!-- 主体 -->
+    <div class="main-wrap">
+        <div class="main">
+         {% block content %}
+             <div id="main-w239" class="l">
+             {% block sidebar %}{% endblock sidebar %}
+             </div>
+             <div id="main-w731" class="r">
+             {% block main %}{% endblock main %}
+             </div>
+         {% endblock content %}
+		</div>
+    </div>
+    {% block footer %}{% endblock footer %}
+</div>
+{% block bottom_js %}{% endblock bottom_js %}
+</body>
+</html>

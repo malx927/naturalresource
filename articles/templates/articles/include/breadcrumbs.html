@@ -1,0 +1,9 @@
+<span class="path">您现在的位置：
+    {% for k, v in breadcrumbs.items %}
+        {% if forloop.last %}
+            <a href="{{ v }}">{{ k }}</a>
+        {% else %}
+            <a href="{{ v }}">{{ k }}</a> >
+        {% endif %}
+    {% endfor %}
+</span>

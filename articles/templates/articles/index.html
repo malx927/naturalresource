@@ -1,0 +1,142 @@
+{% extends "articles/base.html" %}{% load static %}
+{% block title %}{{ site_name }}-首页{% endblock %}
+{% block content %}
+    <div class="info">
+        <div class="date"><p style="color:#0e469b;">今天是：2017年7月58日 星期四</p></div>
+    </div>
+    <!-- 轮播 -->
+    <div class="newspic">
+        <div class="focusBox">
+            <ul class="pic">
+                {% for image_new  in image_news %}
+                 <li><a href="{{ image_new.get_absolute_url }}" target="_blank"><img src="{{ image_new.title_image.url }}" alt=""></a></li>
+                {% endfor %}
+            </ul>
+            <div class="txt-bg"></div>
+            <div class="txt">
+                <ul>
+                    {% for image_new  in image_news %}
+                     <li><a href="{{ image_new.get_absolute_url }}" target="_blank">{{ image_new.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <ul class="num">
+               {% for image_new  in image_news %}
+                   <li><a></a><span></span></li>
+               {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="tab">
+        <div class="tab-tit"><a href="#}">新闻中心</a></div>
+        <div class="tab-box">
+            <div class="tab-main"  style="display:block;">
+                <ul>
+                    {% for new in news %}
+                        <li><a href="{{ new.get_absolute_url }}">{{ new.title }}</a><span>{{ new.show_time|date:'Y-m-d'}}</span></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="box_info">
+		<div class="box_left">
+			  <div class="head_b1"><a href="#">公示公告</a></div>
+			  <div class="open">
+					<div class="information">
+                     {% for notice in notices %}
+                      <li><a href="{{ notice.get_absolute_url }}">{{ notice.title }}</a><span>{{ notice.show_time|date:'Y-m-d'}}</span></li>
+                     {% endfor %}
+					</div>
+			  </div>
+        </div>
+	    <div class="box_right">
+			  <div class="head_b1"><a href="#">信息发布</a></div>
+			  <div class="open">
+					<div class="information">
+                     {% for info in informations %}
+                      <li><a href="{{ info.get_absolute_url }}">{{ info.title }}</a><span>{{ info.show_time|date:'Y-m-d'}}</span></li>
+                     {% endfor %}
+					</div>
+			  </div>
+       </div>
+    </div>
+   <div class="box_info">
+		<div class="box_left">
+			  <div class="head_b1"><a href="#">行业动态</a></div>
+			  <div class="open">
+					<div class="information">
+                     {% for ind_new in industry_news %}
+                      <li><a href="{{ ind_new.get_absolute_url }}">{{ ind_new.title }}</a><span>{{ ind_new.show_time|date:'Y-m-d'}}</span></li>
+                     {% endfor %}
+					</div>
+			  </div>
+        </div>
+	    <div class="box_right">
+			  <div class="head_b1"><a href="#">政府信息公开</a></div>
+			  <div class="open">
+					<div class="information">
+                     {% for ogi in ogis %}
+                      <li><a href="{{ ogi.get_absolute_url }}">{{ ogi.title }}</a><span>{{ ogi.show_time|date:'Y-m-d'}}</span></li>
+                     {% endfor %}
+					</div>
+			  </div>
+       </div>
+   </div>
+       <div class="box_info">
+		<div class="box_left">
+			  <div class="head_b1"><a href="#">部门预算</a></div>
+			  <div class="open">
+					<div class="information">
+                     {% for budget in budgets %}
+                      <li><a href="{{ budget.get_absolute_url }}">{{ budget.title }}</a><span>{{ budget.show_time|date:'Y-m-d'}}</span></li>
+                     {% endfor %}
+					</div>
+			  </div>
+        </div>
+	    <div class="box_right">
+			  <div class="head_b1"><a href="#">部门决算</a></div>
+			  <div class="open">
+					<div class="information">
+                     {% for account in accounts %}
+                      <li><a href="{{ account.get_absolute_url }}">{{ account.title }}</a><span>{{ account.show_time|date:'Y-m-d'}}</span></li>
+                     {% endfor %}
+					</div>
+			  </div>
+       </div>
+   </div>
+    <div class="head_b1" style="width:1000px;"><a style="padding-left:20px;font-size:17px;color:#fff;font-weight:500;">友情链接</a></div>
+    <div class="link">
+      <div class="link-box">
+          {% for link in links %}
+               <a href="{{ link.link_url }}" target="_blank"><img src="{{ link.link_image.url }}" alt="{{ link.name }}"></a>
+          {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}
+    {% include "articles/include/footer.html" %}
+{% endblock footer %}
+{% block bottom_js %}
+    <script>
+    $(function(){
+        $(".nav-box ul li").click(function(){
+            $(this).addClass("nav-on").siblings().removeClass();
+        });
+        $(".tit-box a").hover(function(){
+            var index = $(this).index();
+                $(this).addClass("tit-on").siblings().removeClass();
+                $(".speak-mains>div").eq(index).show().siblings().hide();
+        });
+
+
+        jQuery(".focusBox").slide({ titCell:".num li", mainCell:".pic",effect:"fold", autoPlay:true,trigger:"click",
+                    startFun:function(i){
+                         jQuery(".focusBox .txt li").eq(i).animate({"bottom":0}).siblings().animate({"bottom":-30});
+                    }
+                });
+        jQuery(".picMarquee-left").slide({mainCell:".bd1 ul",autoPlay:true,effect:"leftMarquee",vis:4,interTime:50,trigger:"click"});
+    })
+
+</script>
+{% endblock %}

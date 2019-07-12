@@ -1,0 +1,25 @@
+{% extends "articles/base.html" %}{% load static %}
+{% block title %}{{ site_name }}-{{ channel_name }}{% endblock %}
+{% block sidebar %}
+   {% include "articles/include/sidebar.html" %}
+{% endblock %}
+{% block main %}
+    <div class="site">
+        <h3 style="font-size:16px;color:#2371d9;">{{ channel_name }}</h3>
+        {% include "articles/include/breadcrumbs.html" %}
+    </div>
+    <div class="content">
+				<h1>{{ single.title }}1111</h1>
+				<div class="content_text">
+					{{ single.content|safe }}
+				</div>
+			<div class="clear"></div>
+    </div>
+
+{% endblock main %}
+{% block footer %}
+    {% include "articles/include/footer.html" %}
+{% endblock footer %}
+{% block bottom_js %}
+
+{% endblock %}

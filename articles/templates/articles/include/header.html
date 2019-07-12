@@ -1,0 +1,27 @@
+{% load static %}
+<div class="header">
+    <img src="{% static 'articles/images/big-bg.jpg' %}" alt="" class="logo" style="height:290px;width:100%;">
+    <div class="nav">
+        <div class="nav-box">
+            <ul>
+                <li class="nav-on"><a href="/">网站首页</a></li>
+                <li><a href="{% url 'document-list' 1 %}">机构概况</a></li>
+                <li><a href="{% url 'document-list' 4 %}">新闻中心</a></li>
+                <li><a href="{% url 'document-list' 5 %}">公示公告</a></li>
+                <li><a href="{% url 'document-list' 6 %}">信息发布</a></li>
+                <li><a href="{% url 'document-list' 7 %}">行业动态</a></li>
+                <li><a href="{% url 'document-list' 8 %}">政府信息公开</a></li>
+            <div style="float:right;margin-top:7px;">
+            <form  id="amj-form" name="amj-form" action="#" class="" method="get" target="_blank">
+                <input type="hidden" name="sr" id="sr" value="score desc">
+                <input type="hidden" name="pageId" id="pageId" value="f5261418ddc74f03b27e3590c531102b" />
+                <input id="ext" name="ext" type="hidden" value="siteId:932" />
+                <input type="hidden" name="pNo" id="pNo" value="1" />
+                <input style="width:130px;" class="text" type="text" name="q" id="q" autocomplete="off" value="请输入关键字" onFocus="if(this.value==defaultValue)this.value=''" onBlur="if(this.value=='') this.value=defaultValue" />
+                <input class="btn" type="button" src="" value="搜索" onclick="this.form.submit()">
+            </form>
+            </div>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+{% load static %}
+<dl class="sidebar-nav">
+    <div class="hds">
+        <h4>栏目导航</h4>
+    </div>
+    <div class="bds">
+        <ul>
+            {% for channel in channels %}
+                <li {% if channelid == channel.id %}  class="on"  {% endif %}>
+                    {% if channel.channel_url %}
+                        <a href="{{ channel.channel_url }}">{{ channel.channel_name }}</a>
+                    {% else %}
+                        <a href="{% url 'document-list' channel.id %}">{{ channel.channel_name }}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</dl>
