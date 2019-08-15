@@ -1,0 +1,50 @@
+{% extends "articles/base.html" %}{% load static %}
+{% block title %}{{ site_name }}-站内搜索结果{% endblock %}
+
+{% block content %}
+    <div class="site">
+		<h3 style="font-size:16px;color:#2371d9;">站内搜索结果</h3><span class="path">您现在的位置：站内搜索</span>
+	</div>
+    <!--栏目列表循环 -->
+    <ul class="list-1">
+    {% for p in page %}
+        <li><span class="date">{{ p.show_time|date:'Y-m-d'}}</span><a href="{{ p.get_absolute_url }}">{{ p.title }}</a></li>
+    {% endfor %}
+    </ul>
+    <!--分页 S-->
+    {% if num_pages > 1 %}
+    <div class="paging">
+            <a style="cursor:pointer" href="?page=1" >首页</a>
+            {% if page.has_previous %}
+            <a style="cursor:pointer" href="?page={{ page.previous_page_number }}" >上一页</a>
+            {% else %}
+            <a href="#">上一页</a>
+            {% endif %}
+            {% if page.has_next %}
+                <a style="cursor:pointer" href="?page={{ page.next_page_number}}" >下一页</a>
+             {% else %}
+                <a href="#">下一页</a>
+            {% endif %}
+            <a style="cursor:pointer" href="?page={{ page.paginator.num_pages}}" >尾页</a>
+            <a>当前页:{{page.number}}/共{{ page.paginator.num_pages}}页</a>
+    </div>
+    {% endif %}
+{% endblock %}
+{% block footer %}
+    {% include "articles/include/footer.html" %}
+{% endblock footer %}
+{% block bottom_js %}
+<script>
+    $(function(){
+        $(".nav-box ul li").click(function(){
+            $(this).addClass("nav-on").siblings().removeClass();
+        });
+
+        $(".bds ul li").click(function(){
+            $(this).addClass("on").siblings().removeClass();
+        });
+
+
+    })
+</script>
+{% endblock %}

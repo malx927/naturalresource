@@ -42,7 +42,7 @@ class FananBudgetAdmin(object):
         if self.request.user.is_superuser:
             return qs
         else:
-            return qs.filter(user=self.request.user)
+            return qs.filter(author=self.request.user)
 
 
 xadmin.site.register(FananBudget, FananBudgetAdmin)
@@ -85,7 +85,7 @@ class FananAccountAdmin(object):
         if self.request.user.is_superuser:
             return qs
         else:
-            return qs.filter(user=self.request.user)
+            return qs.filter(author=self.request.user)
 
 
 xadmin.site.register(FananAccount, FananAccountAdmin)

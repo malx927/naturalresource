@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.views import View
 from django.views.generic import DetailView
 
-from articles.models import Document, News, FriendLink, Channel
+from articles.models import Document, FriendLink, Channel
 from articles.utils import get_breadcrumbs
 from naturalresource import settings
 
@@ -44,7 +44,7 @@ class IndexListView(View):
 
 class NewsDetailView(DetailView):
     """新闻详细页"""
-    model = News
+    model = Document
     template_name = 'articles/detail.html'
 
     def get_context_data(self, **kwargs):
@@ -113,7 +113,35 @@ class DocumentListView(View):
 
                     context["page"] = page_obj
             except Channel.DoesNotExist as ex:
-                print(ex)
                 return render(request, template_name="articles/list.html", context=context)
 
         return render(request, template_name="articles/list.html", context=context)
+
+
+class SearchListView(View):
+    """搜索"""
+    def get(self, request, *args, **kwargs):
+        q = request.GET.get("q", None)
+        page = int(request.GET.get("page", 1))
+        context = {}
+        context["site_name"] = settings.SITE_FOOTER
+        print(q)
+        if q:
+            documents = Document.objects.filter(title__contains=q)
+            paginator = Paginator(documents, settings.PAGE_SIZE)
+
+            context["num_pages"] = paginator.num_pages
+            context["count"] = paginator.count
+
+            try:
+                page_obj = paginator.page(page)
+            except PageNotAnInteger:
+                page_obj = paginator.page(1)
+            except EmptyPage:
+                page_obj = paginator.page(paginator.num_pages)
+
+            context["page"] = page_obj
+        else:
+            context["page"] = None
+
+        return render(request, template_name="articles/search_list.html", context=context)

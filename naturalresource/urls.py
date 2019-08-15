@@ -30,7 +30,7 @@ xversion.register_models()
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'^$', IndexListView.as_view(), name='site-index'),
-    url(r'^xadmin/', xadmin.site.urls),
+    url(r'^xadmin/2019/', xadmin.site.urls),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^article/', include('articles.urls')),
     url(r'^organization/', include('organization.urls')),

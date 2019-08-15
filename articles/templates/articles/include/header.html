@@ -12,11 +12,7 @@
                 <li><a href="{% url 'document-list' 7 %}">行业动态</a></li>
                 <li><a href="{% url 'document-list' 8 %}">政府信息公开</a></li>
             <div style="float:right;margin-top:7px;">
-            <form  id="amj-form" name="amj-form" action="#" class="" method="get" target="_blank">
-                <input type="hidden" name="sr" id="sr" value="score desc">
-                <input type="hidden" name="pageId" id="pageId" value="f5261418ddc74f03b27e3590c531102b" />
-                <input id="ext" name="ext" type="hidden" value="siteId:932" />
-                <input type="hidden" name="pNo" id="pNo" value="1" />
+            <form  id="search_form" name="search_form" action="{% url 'search-list' %}" class="" method="get" target="_blank">
                 <input style="width:130px;" class="text" type="text" name="q" id="q" autocomplete="off" value="请输入关键字" onFocus="if(this.value==defaultValue)this.value=''" onBlur="if(this.value=='') this.value=defaultValue" />
                 <input class="btn" type="button" src="" value="搜索" onclick="this.form.submit()">
             </form>

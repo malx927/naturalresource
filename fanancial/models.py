@@ -11,7 +11,7 @@ class FananBudget(Document):
         verbose_name_plural = verbose_name
 
     def save(self, *args, **kwargs):
-        if not self.channel:
+        if not self.channel_id:
             self.channel_id = 14
         return super(FananBudget, self).save(*args, **kwargs)
 
@@ -24,6 +24,6 @@ class FananAccount(Document):
         verbose_name_plural = verbose_name
 
     def save(self, *args, **kwargs):
-        if not self.channel:
+        if not self.channel_id:
             self.channel_id = 15
         return super(FananAccount, self).save(*args, **kwargs)

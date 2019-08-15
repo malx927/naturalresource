@@ -42,7 +42,7 @@ class Channel(models.Model):
 
 
 class Document(models.Model):
-    """文章"""
+    """新闻中心"""
     title = models.CharField(verbose_name='标题', max_length=500)
     channel = models.ForeignKey(Channel, verbose_name="栏目", on_delete=models.SET_NULL, null=True, blank=True)
     sub_title = models.CharField(verbose_name='副标题', max_length=500, blank=True, null=True)
@@ -64,9 +64,15 @@ class Document(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = '文章列表'
+        verbose_name = '新闻中心'
         verbose_name_plural = verbose_name
         ordering = ["-show_time"]
+
+    def save(self, *args, **kwargs):
+
+        if not self.channel_id:
+            self.channel_id = 4
+        return super(Document, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse("news-detail", kwargs={"pk": self.id})
@@ -85,20 +91,20 @@ class Document(models.Model):
         return ""
 
 
-class News(Document):
-
-    class Meta:
-        proxy = True
-        verbose_name = '新闻中心'
-        verbose_name_plural = verbose_name
-
-    def save(self, *args, **kwargs):
-        if not self.channel:
-            self.channel_id = 4
-        return super(News, self).save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        return reverse("news-detail", kwargs={"pk": self.id})
+# class News(Document):
+#
+#     class Meta:
+#         proxy = True
+#         verbose_name = '新闻中心'
+#         verbose_name_plural = verbose_name
+#
+#     def save(self, *args, **kwargs):
+#         if not self.channel:
+#             self.channel_id = 4
+#         return super(News, self).save(*args, **kwargs)
+#
+#     def get_absolute_url(self):
+#         return reverse("news-detail", kwargs={"pk": self.id})
 
 
 class Notice(Document):
@@ -109,7 +115,7 @@ class Notice(Document):
         verbose_name_plural = verbose_name
 
     def save(self, *args, **kwargs):
-        if not self.channel:
+        if not self.channel_id:
             self.channel_id = 5
         return super(Notice, self).save(*args, **kwargs)
 
@@ -122,7 +128,7 @@ class Information(Document):
         verbose_name_plural = verbose_name
 
     def save(self, *args, **kwargs):
-        if not self.channel:
+        if not self.channel_id:
             self.channel_id = 6
         return super(Information, self).save(*args, **kwargs)
 

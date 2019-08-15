@@ -2,7 +2,7 @@
 {% block title %}{{ site_name }}-首页{% endblock %}
 {% block content %}
     <div class="info">
-        <div class="date"><p style="color:#0e469b;">今天是：2017年7月58日 星期四</p></div>
+        <div class="date"><p style="color:#0e469b;"><script type="text/javascript" src="{% static 'articles/js/show_date.js' %}"></script></p></div>
     </div>
     <!-- 轮播 -->
     <div class="newspic">
@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="tab">
-        <div class="tab-tit"><a href="#}">新闻中心</a></div>
+        <div class="tab-tit"><a href="{% url 'document-list' 4 %}">新闻中心</a></div>
         <div class="tab-box">
             <div class="tab-main"  style="display:block;">
                 <ul>
@@ -41,7 +41,7 @@
     </div>
     <div class="box_info">
 		<div class="box_left">
-			  <div class="head_b1"><a href="#">公示公告</a></div>
+			  <div class="head_b1"><a href="{% url 'document-list' 5 %}">公示公告</a></div>
 			  <div class="open">
 					<div class="information">
                      {% for notice in notices %}
@@ -51,7 +51,7 @@
 			  </div>
         </div>
 	    <div class="box_right">
-			  <div class="head_b1"><a href="#">信息发布</a></div>
+			  <div class="head_b1"><a href="{% url 'document-list' 6 %}">信息发布</a></div>
 			  <div class="open">
 					<div class="information">
                      {% for info in informations %}
@@ -63,7 +63,7 @@
     </div>
    <div class="box_info">
 		<div class="box_left">
-			  <div class="head_b1"><a href="#">行业动态</a></div>
+			  <div class="head_b1"><a href="{% url 'document-list' 7 %}">行业动态</a></div>
 			  <div class="open">
 					<div class="information">
                      {% for ind_new in industry_news %}
@@ -73,7 +73,7 @@
 			  </div>
         </div>
 	    <div class="box_right">
-			  <div class="head_b1"><a href="#">政府信息公开</a></div>
+			  <div class="head_b1"><a href="{% url 'document-list' 8 %}">政府信息公开</a></div>
 			  <div class="open">
 					<div class="information">
                      {% for ogi in ogis %}
@@ -85,7 +85,7 @@
    </div>
        <div class="box_info">
 		<div class="box_left">
-			  <div class="head_b1"><a href="#">部门预算</a></div>
+			  <div class="head_b1"><a href="{% url 'document-list' 14 %}">部门预算</a></div>
 			  <div class="open">
 					<div class="information">
                      {% for budget in budgets %}
@@ -95,7 +95,7 @@
 			  </div>
         </div>
 	    <div class="box_right">
-			  <div class="head_b1"><a href="#">部门决算</a></div>
+			  <div class="head_b1"><a href="{% url 'document-list' 15 %}">部门决算</a></div>
 			  <div class="open">
 					<div class="information">
                      {% for account in accounts %}

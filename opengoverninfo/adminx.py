@@ -42,7 +42,7 @@ class GovOpenSystemAdmin(object):
         if self.request.user.is_superuser:
             return qs
         else:
-            return qs.filter(user=self.request.user)
+            return qs.filter(author=self.request.user)
 
 
 xadmin.site.register(GovOpenSystem, GovOpenSystemAdmin)
@@ -85,7 +85,7 @@ class GovOpenGuideAdmin(object):
         if self.request.user.is_superuser:
             return qs
         else:
-            return qs.filter(user=self.request.user)
+            return qs.filter(author=self.request.user)
 
 
 xadmin.site.register(GovOpenGuide, GovOpenGuideAdmin)
@@ -128,7 +128,7 @@ class GovOpenListAdmin(object):
         if self.request.user.is_superuser:
             return qs
         else:
-            return qs.filter(user=self.request.user)
+            return qs.filter(author=self.request.user)
 
 
 xadmin.site.register(GovOpenList, GovOpenListAdmin)
@@ -171,7 +171,7 @@ class GovOpenReportAdmin(object):
         if self.request.user.is_superuser:
             return qs
         else:
-            return qs.filter(user=self.request.user)
+            return qs.filter(author=self.request.user)
 
 
 xadmin.site.register(GovOpenReport, GovOpenReportAdmin)
