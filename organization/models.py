@@ -1,6 +1,7 @@
 from django.db import models
 
 from articles.models import Document, Channel
+from naturalresource import settings
 
 
 class Department(Document):
@@ -12,7 +13,7 @@ class Department(Document):
 
     def save(self, *args, **kwargs):
         if not self.channel:
-            self.channel_id = 2
+            self.channel_id = settings.C_DEPT
         return super(Department, self).save(*args, **kwargs)
 
 
@@ -25,5 +26,5 @@ class DeptDuty(Document):
 
     def save(self, *args, **kwargs):
         if not self.channel:
-            self.channel_id = 3
+            self.channel_id = settings.C_DUTY
         return super(DeptDuty, self).save(*args, **kwargs)
