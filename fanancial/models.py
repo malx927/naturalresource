@@ -1,6 +1,7 @@
 from django.db import models
 
 from articles.models import Document
+from naturalresource import settings
 
 
 class FananBudget(Document):
@@ -12,7 +13,7 @@ class FananBudget(Document):
 
     def save(self, *args, **kwargs):
         if not self.channel_id:
-            self.channel_id = 14
+            self.channel_id = settings.C_BUDGETS
         return super(FananBudget, self).save(*args, **kwargs)
 
 
@@ -25,5 +26,5 @@ class FananAccount(Document):
 
     def save(self, *args, **kwargs):
         if not self.channel_id:
-            self.channel_id = 15
+            self.channel_id = settings.C_ACCOUNTS
         return super(FananAccount, self).save(*args, **kwargs)

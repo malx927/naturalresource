@@ -1,6 +1,7 @@
 from django.db import models
 
 from articles.models import Document
+from naturalresource import settings
 
 
 class GovOpenSystem(Document):
@@ -12,7 +13,7 @@ class GovOpenSystem(Document):
 
     def save(self, *args, **kwargs):
         if not self.channel_id:
-            self.channel_id = 9
+            self.channel_id = settings.C_OPEN_SYSTEM
         return super(GovOpenSystem, self).save(*args, **kwargs)
 
 
@@ -25,7 +26,7 @@ class GovOpenGuide(Document):
 
     def save(self, *args, **kwargs):
         if not self.channel_id:
-            self.channel_id = 10
+            self.channel_id = settings.C_OPEN_GUIDE
         return super(GovOpenGuide, self).save(*args, **kwargs)
 
 
@@ -38,7 +39,7 @@ class GovOpenList(Document):
 
     def save(self, *args, **kwargs):
         if not self.channel_id:
-            self.channel_id = 11
+            self.channel_id = settings.C_OPEN_LIST
         return super(GovOpenList, self).save(*args, **kwargs)
 
 
@@ -51,7 +52,6 @@ class GovOpenReport(Document):
 
     def save(self, *args, **kwargs):
         if not self.channel_id:
-            self.channel_id = 12
+            self.channel_id = settings.C_OPEN_REPORT
         return super(GovOpenReport, self).save(*args, **kwargs)
 
-# Financial Budget and Account

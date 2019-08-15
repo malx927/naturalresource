@@ -71,7 +71,7 @@ class Document(models.Model):
     def save(self, *args, **kwargs):
 
         if not self.channel_id:
-            self.channel_id = 4
+            self.channel_id = settings.C_NEWS
         return super(Document, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
@@ -116,7 +116,7 @@ class Notice(Document):
 
     def save(self, *args, **kwargs):
         if not self.channel_id:
-            self.channel_id = 5
+            self.channel_id = settings.C_NOTICE
         return super(Notice, self).save(*args, **kwargs)
 
 
@@ -129,7 +129,7 @@ class Information(Document):
 
     def save(self, *args, **kwargs):
         if not self.channel_id:
-            self.channel_id = 6
+            self.channel_id = settings.C_INFO
         return super(Information, self).save(*args, **kwargs)
 
 
@@ -142,7 +142,7 @@ class IndustryNews(Document):
 
     def save(self, *args, **kwargs):
         if not self.channel:
-            self.channel_id = 7
+            self.channel_id = settings.C_INDUSTRY
         return super(IndustryNews, self).save(*args, **kwargs)
 
 
