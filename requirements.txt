@@ -1,4 +1,4 @@
-django==1.11.23
+django==2.2.24
 django-ckeditor==5.5.0
 django-crispy-forms==1.7.2
 django-import-export>=1.2.0
